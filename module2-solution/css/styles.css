@@ -16,9 +16,7 @@ div.inside {
 	border: 1px solid black;
 	background-color: grey;
 	margin-top: 20px;
-	margin-bottom: 20px;
 	margin-left: 20px;
-	margin-right: 20px;
 	overflow: auto;
 }
 
@@ -28,7 +26,7 @@ h2 {
 	padding-left: 20px;
 	position: absolute;
 	top: 0;
-	right: 20px;
+	right: 0;
 }
 
 h2.sushi {
@@ -45,17 +43,16 @@ h2.chicken {
 }
 
 p {
-  padding-top: 50px;
   margin-right: auto;
   margin-left: auto;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-top: 30px;
   width: 90%;
   height: 120px;
 }
 
 .row {
   width: 100%;
+  margin-left: -10px;
 }
 
 /********** Large devices **********/
