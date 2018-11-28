@@ -1,0 +1,54 @@
+body {
+	font-family: Helvetica, sans-serif;
+	font-size: 20px;
+}
+
+.container {
+	width: 100%;
+}
+
+.navbar-header {
+	height: 70px;
+}
+
+.navbar-brand h1 {
+	font-size: 2em;
+	font-weight: bold;
+ 	margin: 0;
+}
+.navbar-brand a:hover, .navbar-brand a:focus {
+  	text-decoration: none;
+}
+
+h2 {
+	font-size: 1.5em;
+	font-weight: bold;
+}
+
+.row {
+	margin: 20px;
+}
+section h3 {
+	font-size: 1.2em;
+	font-weight: bold;
+}
+section .container {
+	background-color: #D3D3D3;
+	margin-bottom: 40px;
+}
+section .container p {
+	margin: 20px;
+}
+
+#back-to-top {
+	padding-left: 20px;
+	font-size: .7em;
+}
+
+/********** extra small devices Only) **********/
+@media (max-width: 767px) {
+  	#collapsable-nav {
+  		visibility: visible;
+  		text-align: center;
+  	}
+}
