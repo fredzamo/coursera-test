@@ -19,6 +19,9 @@ body {
 .navbar-brand a:hover, .navbar-brand a:focus {
   	text-decoration: none;
 }
+.navbar-toggle {
+	margin-top: 20px;
+}
 
 h2 {
 	font-size: 1.5em;
