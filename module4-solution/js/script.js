@@ -37,7 +37,7 @@ WARNING!!! WARNING!!!
 (function() {
 
   // the array of names are taken from a json file located in ../resources/ folder
-  loadJSON('../resources/names.json');
+  loadJSON('resources/names.json');
 
   // steps related FOR and IF statements can be found in Printer.js file
 
