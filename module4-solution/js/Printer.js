@@ -5,7 +5,7 @@
   printerNames.print = function(jsonfile) {
   	
   	if(jsonfile.hasOwnProperty(this.property)) {
-  		names = jsonfile["names"];
+  		names = jsonfile[this.property];
 	  
 	  	for (var i = 0; i < names.length; i++) {
 
