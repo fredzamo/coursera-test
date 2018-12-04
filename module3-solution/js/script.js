@@ -40,15 +40,23 @@ function initMainContent() {
 						var sectionsHtml = $stringUtils.insertProperty(sectionhtml, "id", sec.id);
 						sectionsHtml = $stringUtils.insertProperty(sectionsHtml, "text", sec.paragraph);
 
-						sectionsHtml = $stringUtils.insertProperty(sectionsHtml, "md-size", 4);
-						sectionsHtml = $stringUtils.insertProperty(sectionsHtml, "xs-size", 12);
+						// setting md-size based on number of sections
+						if (i === (sections.length - 1) && sections.length % 2 === 0 && (sections.length/3)%2 != 0) {
+							sectionsHtml = $stringUtils.insertProperty(sectionsHtml, "md-size", 12);
+						} else if(i > 2 && (sections.length/3)%2 != 0) {
+							sectionsHtml = $stringUtils.insertProperty(sectionsHtml, "md-size", 6);
+						} else {
+							sectionsHtml = $stringUtils.insertProperty(sectionsHtml, "md-size", 4);
+						}
 						
-						// sm-size is set based on number of sections
-						if (i != 0 && (sections.length % 2) != 0 && (i % 2) === 0) {
+						// setting sm-size based on number of sections
+						if (i === (sections.length - 1) && sections.length % 2 != 0) {
 							sectionsHtml = $stringUtils.insertProperty(sectionsHtml, "sm-size", 12);
 						} else {
 							sectionsHtml = $stringUtils.insertProperty(sectionsHtml, "sm-size", 6);
 						}
+					
+						sectionsHtml = $stringUtils.insertProperty(sectionsHtml, "xs-size", 12);
 
 						viewRow.addContent(sectionsHtml);
 						viewItem.addContent(itemsHtml);
