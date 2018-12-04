@@ -13,37 +13,56 @@ function initMainContent() {
 
 	var titleSnippertHtml = "snippets/title-snippet.html";
   	var sectionSnippertHtml = "snippets/section-snippet.html";
+  	var listItemSnippertHtml = "snippets/listItem-snippet.html";
   	var sectionsJson = "data/sections.json";
 
-  	$ajaxUtils.sendGetRequest(titleSnippertHtml, function (titlehtml) {
+	$ajaxUtils.sendGetRequest(listItemSnippertHtml, function (itemhtml) {
+		$ajaxUtils.sendGetRequest(titleSnippertHtml, function (titlehtml) {
+			$ajaxUtils.sendGetRequest(sectionsJson, function(obj) {
+				var sections = obj.sections;
 
-		$ajaxUtils.sendGetRequest(sectionsJson, function(obj) {
-			var sections = obj.sections;
+				$ajaxUtils.sendGetRequest(sectionSnippertHtml, function(sectionhtml) {
 
-			$ajaxUtils.sendGetRequest(sectionSnippertHtml, function(sectionhtml) {
+					var titleContent = $stringUtils.insertProperty(titlehtml, "title", "Menu");
 
-				var titleContent = $stringUtils.insertProperty(titlehtml, "title", "Menu");
+					var viewRow = new ViewUtils();
+					var viewItem = new ViewUtils();
+					viewRow.addTitleDiv(titleContent);
+					viewRow.startRowDiv();
 
-				var view = new ViewUtils();
-				view.addTitleDiv(titleContent);
-				view.startRowDiv();
+					for (var i = 0; i < sections.length; i++) {
+						console.log(sections[i]);
 
-				for (var i = 0; i < sections.length; i++) {
-					console.log(sections[i]);
+						var sec = sections[i];
 
-					var sec = sections[i];
-					var replaced = $stringUtils.insertProperty(sectionhtml, "id", sec.id);
-					replaced = $stringUtils.insertProperty(replaced, "text", sec.paragraph);
+						var itemsHtml = $stringUtils.insertProperty(itemhtml, "id", sec.id);
 
-					view.addContent(replaced);
-				}		
+						var sectionsHtml = $stringUtils.insertProperty(sectionhtml, "id", sec.id);
+						sectionsHtml = $stringUtils.insertProperty(sectionsHtml, "text", sec.paragraph);
 
-				view.endRowDiv();	
-				insertHtml("#main-content", view.build());
-	  		}, false);
-	  	}, true);
+						sectionsHtml = $stringUtils.insertProperty(sectionsHtml, "md-size", 4);
+						sectionsHtml = $stringUtils.insertProperty(sectionsHtml, "xs-size", 12);
+						
+						// sm-size is set based on number of sections
+						if (i != 0 && (sections.length % 2) != 0 && (i % 2) === 0) {
+							sectionsHtml = $stringUtils.insertProperty(sectionsHtml, "sm-size", 12);
+						} else {
+							sectionsHtml = $stringUtils.insertProperty(sectionsHtml, "sm-size", 6);
+						}
 
-  	}, false);
+						viewRow.addContent(sectionsHtml);
+						viewItem.addContent(itemsHtml);
+					}		
+
+					viewRow.endRowDiv();	
+					insertHtml("#main-content", viewRow.build());
+
+					insertHtml("#nav-list", viewItem.build());
+		  		}, false);
+		  	}, true);
+
+	  	}, false);
+	}, false);
 
 }
 

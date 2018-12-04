@@ -2,8 +2,8 @@ function ViewUtils() {
 
 	var title;
 	var content = "";
-	var start;
-	var end;
+	var start = "";
+	var end = "";
 
 	this.addTitleDiv = function(titleContent) {
 		title = titleContent;
