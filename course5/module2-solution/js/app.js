@@ -50,6 +50,10 @@ function ShoppingListCheckOffService() {
     {
       name: "Chocolate",
       quantity: "5"
+    },
+    {
+      name: "Candies",
+      quantity: "1"
     }
   ];
   var boughtItems = [];
