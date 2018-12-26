@@ -31,23 +31,23 @@
   <div class="row">
 
     <!-- To Buy List -->
-    <div class="col-md-6" ng-controller="ToBuyController">
+    <div class="col-md-6" ng-controller="ToBuyController as buyList">
      <h2>To Buy:</h2>
      <ul>
-       <li ng-repeat="item in buyItems">{{$index + 1}}. Buy {{item.quantity}} of {{item.name}}
-         <button ng-click="bought($index);" class="btn btn-default"><span class="glyphicon glyphicon-ok"></span> Bought</button>
+       <li ng-repeat="item in buyList.items">{{$index + 1}}. Buy {{item.quantity}} of {{item.name}}
+         <button ng-click="buyList.buy($index);" class="btn btn-default"><span class="glyphicon glyphicon-ok"></span> Bought</button>
        </li>
      </ul>
-     <div ng-if="empty()" class="emptyMessage">Everything is bought!</div>
+     <div ng-if="buyList.empty()" class="emptyMessage">Everything is bought!</div>
     </div>
 
     <!-- Already Bought List -->
-    <div class="col-md-6" ng-controller="AlreadyBoughtController">
+    <div class="col-md-6" ng-controller="AlreadyBoughtController as bougthList">
      <h2>Already Bought:</h2>
      <ul>
-       <li ng-repeat="item in boughtItems">{{$index + 1}}. Bought {{item.quantity}} {{item.name}}</li>
+       <li ng-repeat="item in bougthList.items">{{$index + 1}}. Bought {{item.quantity}} {{item.name}}</li>
      </ul>
-     <div ng-if="empty()" class="emptyMessage">Nothing bought yet.</div>
+     <div ng-if="bougthList.empty()" class="emptyMessage">Nothing bought yet.</div>
     </div>
   </div>
 </div>

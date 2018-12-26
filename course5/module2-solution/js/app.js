@@ -6,27 +6,31 @@ angular.module('ShoppingListCheckOff', [])
 .controller('AlreadyBoughtController', AlreadyBoughtController)
 .service('ShoppingListCheckOffService', ShoppingListCheckOffService);
 
-ToBuyController.$inject = ['$scope', 'ShoppingListCheckOffService'];
-function ToBuyController($scope, ShoppingListCheckOffService) {
+ToBuyController.$inject = ['ShoppingListCheckOffService'];
+function ToBuyController(ShoppingListCheckOffService) {
 
-  $scope.buyItems = ShoppingListCheckOffService.getBuyItems();
+  var buyList = this;
 
-  $scope.bought = function (itemIndex) {
-    ShoppingListCheckOffService.boughtItem(itemIndex);
+  buyList.items = ShoppingListCheckOffService.getBuyItems();
+
+  buyList.buy = function (itemIndex) {
+    ShoppingListCheckOffService.buyItem(itemIndex);
   }
 
-  $scope.empty = function() {
-      return $scope.buyItems.length === 0;
+  buyList.empty = function() {
+      return buyList.items.length === 0;
   }
 }
 
-AlreadyBoughtController.$inject = ['$scope', 'ShoppingListCheckOffService'];
-function AlreadyBoughtController($scope, ShoppingListCheckOffService) {
+AlreadyBoughtController.$inject = ['ShoppingListCheckOffService'];
+function AlreadyBoughtController(ShoppingListCheckOffService) {
 
-  $scope.boughtItems = ShoppingListCheckOffService.getBoughtItems();
+  var bougthList = this;
 
-  $scope.empty = function() {
-      return $scope.boughtItems.length === 0;
+  bougthList.items = ShoppingListCheckOffService.getBoughtItems();
+
+  bougthList.empty = function() {
+      return bougthList.items.length === 0;
   }
 }
 
@@ -58,23 +62,11 @@ function ShoppingListCheckOffService() {
   ];
   var boughtItems = [];
 
-  service.boughtItem = function (itemIndex) {
+  service.buyItem = function (itemIndex) {
     var item = buyItems[itemIndex];
     boughtItems.push(item);
     buyItems.splice(itemIndex, 1);
   }
-
-  service.addItem = function (itemName, quantity) {
-    var item = {
-      name: itemName,
-      quantity: quantity
-    };
-    buyItems.push(item);
-  };
-
-  service.removeItem = function (itemIndex) {
-    buyItems.splice(itemIndex, 1);
-  };
 
   service.getBuyItems = function () {
     return buyItems;
