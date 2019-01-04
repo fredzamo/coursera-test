@@ -1,0 +1,17 @@
+{ "menuItems": [
+  {
+    "name": "Milk"
+  },
+  {
+    "name": "Donuts"
+  },
+  {
+    "name": "Cookies"
+  },
+  {
+    "name": "Chocolate"
+  },
+  {
+    "name": "Candies"
+  }]
+}

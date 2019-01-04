@@ -1,0 +1,6 @@
+<ul class="form-group narrow-button">
+  <li ng-repeat="item in list.foundItems">
+    <span> name = {{ item.name }} <br> short name = {{ item.short_name }} <br> description = {{ item.description }}</span><br>
+    <button class="btn btn-secondary" ng-click="list.onRemove({index: $index});">Don't want this one!</button>
+  </li>
+</ul>
